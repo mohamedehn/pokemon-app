@@ -4,7 +4,7 @@ import { Pokemon } from './pokemon'; // permet d'importer le modèle
 
 @Component({
   selector: 'app-root',
-  template: `<h1>Liste de Pokémons</h1>`
+  templateUrl: 'app.component.html' //sépare le template (vue) de la logique (typescript pour faire tourner le component), sur un fichier dédié
 })
 export class AppComponent implements OnInit{
   pokemonList : Pokemon [] = POKEMONS
