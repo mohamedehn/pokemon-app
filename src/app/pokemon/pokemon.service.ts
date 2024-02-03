@@ -15,10 +15,20 @@ export class PokemonService {
     );
   }
 
+  searchPokemonList(searchTerm: string): Observable<Pokemon[]> {
+    if(searchTerm.length <= 1) {
+      return of([]);
+    }
+    return this.http.get<Pokemon[]>(`api/pokemons/?name=${searchTerm}`).pipe(
+      tap(response => this.log(response)),
+      catchError((error => this.handleError(error, undefined)))
+    );
+  }
+
   getPokemonById(pokemonId: number): Observable <Pokemon | undefined>{
     return this.http.get<Pokemon>(`api/pokemons/${pokemonId}`).pipe(
       tap(response => this.log(response)),
-      catchError((error => this.handleError(error, undefined)))
+      catchError((error => this.handleError(error, [])))
     );
   }
 
